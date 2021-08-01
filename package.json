@@ -1,0 +1,17 @@
+{
+  "name": "kengan-ashura-scraper",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@types/cheerio": "^0.22.30",
+    "@types/jsdom": "^16.2.13",
+    "got": "^11.8.2",
+    "jsdom": "^16.6.0"
+  }
+}
