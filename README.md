@@ -1,6 +1,8 @@
-# kengan ashura
+# kengan scraper
 
 recently watched kengan ashura and now I want to read it so I made this scraper
+i finished reading kengan ashura so now this scrapes kengan omega
+just go back a few commits (2?) if you want to use this for kengan ashura
 
 ## Usage and install and stuff
 
