@@ -1,5 +1,5 @@
 {
-  "name": "kengan-ashura-scraper",
+  "name": "kengan-scraper",
   "version": "1.0.0",
   "description": "",
   "main": "src/index.ts",

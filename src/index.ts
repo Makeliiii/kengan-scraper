@@ -6,7 +6,7 @@ const kenganUrl: string = "https://kenganashura.com/";
 
 const isManga = (link: HTMLAnchorElement): boolean => {
   if (typeof link.href === "undefined") return false;
-  return link.href.includes("/manga/kengan-ashura");
+  return link.href.includes("/manga/kengan-omega"); // "/manga/kengan-ashura" for kengan-ashura
 };
 
 const isImage = (img: HTMLImageElement): boolean => {
@@ -22,16 +22,23 @@ const getExtension = (url: string): string => {
 (async () => {
   const res = await got(kenganUrl);
   const linksDom = new JSDOM(res.body);
-  fs.mkdir("./manga", () => {
-    console.log("Creating folder manga folder PogU!");
+  const root = "./kengan_omega"; // root folder for the mango
+  fs.mkdir(root, () => {
+    console.log("Creating kengan_omega folder PogU!");
   });
 
   const nodes = [...linksDom.window.document.querySelectorAll("a")];
   const mangaNodes = nodes.filter(isManga);
 
   for (const link of mangaNodes) {
-    const folderName = `Chapter_${link.textContent!.slice(28)}`;
-    fs.mkdir(`./manga/${folderName}`, () =>
+    // instead of match, use slice(28) for kengan ashura
+    // this is the worst fucking hack in human history
+    // as I don't know regex and will not bother to learn
+    // this has been my ted talk
+    const folderName = `Chapter_${link.textContent!.match(
+      /(\d+(?:\.\d+)?)/
+    )}`.split(",")[0];
+    fs.mkdir(`${root}/${folderName}`, () =>
       console.log("Creating chapter folder:", folderName)
     );
 
@@ -46,7 +53,7 @@ const getExtension = (url: string): string => {
         .stream(src)
         .pipe(
           fs.createWriteStream(
-            `./manga/${folderName}/${i}.${getExtension(src)}`
+            `${root}/${folderName}/${i}.${getExtension(src)}`
           )
         );
     }
